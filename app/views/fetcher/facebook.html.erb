@@ -1,0 +1,32 @@
+<h1>Facebook fetcher</h1>
+
+<ul id="posts">
+  <% @posts.each do |post| %>
+    <li>
+      <ul class="post">
+        <li><b>ID:</b> <%= post[:id] %></li>
+        <li><b>User:</b>
+          <ul class="user">
+            <li><b>ID:</b> <%= post[:user][:id] %></li>
+            <li><b>Name:</b> <%= post[:user][:name] %></li>
+            <li><b>Gender:</b> <%= post[:user][:gender] %></li>
+            <li><b>Language:</b> <%= post[:user][:language] %></li>
+          </ul>
+        </li>
+        <li><b>Message:</b> <%= post[:message] %></li>
+        <% unless post[:link].nil? %>
+          <li><b>Link:</b> <%= post[:link] %></li>
+        <% end %>
+        <% unless post[:application].empty? %>
+          <li><b>Application:</b>
+            <ul class="application">
+              <li><b>ID:</b> <%= post[:application][:id] %></li>
+              <li><b>Name:</b> <%= post[:application][:name] %></li>
+            </ul>
+          </li>
+        <% end %>
+        <li><b>Date:</b> <%= post[:date] %></li>
+      </ul>
+    </li>
+  <% end %>
+</ul>

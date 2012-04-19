@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120419060944) do
+ActiveRecord::Schema.define(:version => 20120419093317) do
 
   create_table "applications", :force => true do |t|
     t.string   "identifier"
@@ -26,8 +26,15 @@ ActiveRecord::Schema.define(:version => 20120419060944) do
     t.string   "link"
     t.integer  "application_id"
     t.string   "date"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.integer  "social_network_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  create_table "social_networks", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

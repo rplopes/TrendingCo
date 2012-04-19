@@ -6,6 +6,7 @@ class CreatePosts < ActiveRecord::Migration
       t.string :link
       t.integer :application_id
       t.string :date
+      t.integer :social_network_id
 
       t.timestamps
     end

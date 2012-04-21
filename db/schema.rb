@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120419093317) do
+ActiveRecord::Schema.define(:version => 20120419152607) do
 
   create_table "applications", :force => true do |t|
     t.string   "identifier"
@@ -20,12 +20,33 @@ ActiveRecord::Schema.define(:version => 20120419093317) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "hashtags", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "hashtags_posts", :id => false, :force => true do |t|
+    t.integer "post_id"
+    t.integer "hashtag_id"
+  end
+
+  create_table "links", :force => true do |t|
+    t.string   "url"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "links_posts", :id => false, :force => true do |t|
+    t.integer "post_id"
+    t.integer "link_id"
+  end
+
   create_table "posts", :force => true do |t|
     t.string   "identifier"
-    t.integer  "user_id"
-    t.string   "link"
-    t.integer  "application_id"
     t.string   "date"
+    t.integer  "user_id"
+    t.integer  "application_id"
     t.integer  "social_network_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false

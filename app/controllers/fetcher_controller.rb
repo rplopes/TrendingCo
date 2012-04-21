@@ -1,22 +1,16 @@
 class FetcherController < ApplicationController
+
+  def default
+  end
+
   def facebook
-    @posts = fetch_facebook(params[:search], params[:day], params[:nextday])
-    respond_to do |format|
-      #format.html
-      format.json{
-        render json: @posts.to_json
-      }
-    end
+    @posts = fetch_facebook(params[:search], params[:from], params[:to])
+    render json: @posts.to_json
   end
 
   def twitter
-    @posts = fetch_twitter(params[:search], params[:day], params[:nextday])
-    respond_to do |format|
-      #format.html
-      format.json{
-        render json: @posts.to_json
-      }
-    end
+    @posts = fetch_twitter(params[:search], params[:from], params[:to])
+    render json: @posts.to_json
   end
 
   private
@@ -44,7 +38,7 @@ class FetcherController < ApplicationController
 
           posts << {social_network: post.social_network.name,
                     id:             post.identifier,
-                    link:           post.link,
+                    links:          post.links,
                     date:           post.date,
                     application:    application,
                     user:           {
@@ -79,13 +73,15 @@ class FetcherController < ApplicationController
                                    r[:from_user],
                                    r.source,
                                    r.urls,
+                                   r.hashtags,
                                    r.created_at)
 
           application = {id: post.application.identifier, name: post.application.name} rescue nil
 
           posts << {social_network: post.social_network.name,
                     id:             post.identifier,
-                    link:           post.link,
+                    links:          post.links,
+                    hashtags:       post.hashtags,
                     date:           post.date,
                     application:    application,
                     user:           {

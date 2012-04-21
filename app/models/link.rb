@@ -8,7 +8,7 @@ class Link < ActiveRecord::Base
     if link.nil?
       post.links.create!(url: url) unless url.nil?
     else
-      post.links.add(link)
+      post.links << link
     end
   end
 
